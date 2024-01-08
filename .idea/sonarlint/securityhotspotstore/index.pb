@@ -15,3 +15,15 @@ m
 =app/src/main/java/com/example/appdescuentos/ui/theme/Color.kt,8\6\86dccd2f0e25dc745a25c04ee89098084c5e96e8
 m
 =app/src/main/java/com/example/appdescuentos/ui/theme/Theme.kt,d\e\ded4e72ffe68827e706b6bdc430b5bd7a454d8e5
+|
+Lapp/src/main/java/com/example/appdescuentos/viewModels/CalcularViewModel1.kt,5\b\5be12cf2ae9105dacc54987bdee13233b51def48
+|
+Lapp/src/main/java/com/example/appdescuentos/viewModels/CalcularViewModel2.kt,8\d\8d6734e50d0b49db05f336cfc2ccf59e08924d1a
+|
+Lapp/src/main/java/com/example/appdescuentos/viewModels/CalcularViewModel3.kt,d\7\d76f5c8825e8de47264a1a8f437426972cdc2250
+n
+>app/src/main/java/com/example/appdescuentos/views/HomeView2.kt,a\7\a7e778839bb372144bd70e5e93e52d4f16711fb4
+s
+Capp/src/main/java/com/example/appdescuentos/models/CalcularState.kt,5\9\59013bb4fd1befc23440a9633115d7ee67aa2067
+n
+>app/src/main/java/com/example/appdescuentos/views/HomeView3.kt,0\9\09397913dc65ed9badf5b8d789bb954c088c2eeb

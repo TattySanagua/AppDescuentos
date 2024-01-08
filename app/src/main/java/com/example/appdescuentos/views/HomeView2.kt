@@ -27,11 +27,12 @@ import com.example.appdescuentos.components.MainTextField
 import com.example.appdescuentos.components.SpaceH
 import com.example.appdescuentos.components.TwoCard
 import com.example.appdescuentos.viewModels.CalcularViewModel1
+import com.example.appdescuentos.viewModels.CalcularViewModel2
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeView(viewModel: CalcularViewModel1){
+fun HomeView2(viewModel: CalcularViewModel2){
     Scaffold (
         topBar = {
             CenterAlignedTopAppBar(
@@ -39,15 +40,15 @@ fun HomeView(viewModel: CalcularViewModel1){
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary
                 )
-                )
+            )
         }
     ){
-        ContentHomeView(it, viewModel)
+        ContentHomeView2(it, viewModel)
     }
 }
 
 @Composable
-fun ContentHomeView(paddingValues: PaddingValues, viewModel: CalcularViewModel1){
+fun ContentHomeView2(paddingValues: PaddingValues, viewModel: CalcularViewModel2){
     Column(
         modifier = Modifier
             .padding(paddingValues)
@@ -56,52 +57,38 @@ fun ContentHomeView(paddingValues: PaddingValues, viewModel: CalcularViewModel1)
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        var precio by remember { mutableStateOf("") }
-        var descuento by remember { mutableStateOf("") }
-        var precioDescuento by remember { mutableStateOf(0.0) }
-        var totalDescuento by remember { mutableStateOf(0.0) }
-        var showAlert by remember { mutableStateOf(false) }
 
         TwoCard(
             title1 = "Total",
-            number1 = totalDescuento,
+            number1 = viewModel.totalDescuento,
             title2 = "Descuento",
-            number2 = precioDescuento)
+            number2 = viewModel.precioDescuento)
 
         MainTextField(
-            value = precio,
-            onValueChange = {precio = it},
+            value = viewModel.precio,
+            onValueChange = {viewModel.onValue(it, "prec")},
             label = "Precio")
         SpaceH()
         MainTextField(
-            value = descuento,
-            onValueChange = {descuento = it},
+            value = viewModel.descuento,
+            onValueChange = {viewModel.onValue(it, "desc")},
             label = "Descuento %")
         SpaceH(10.dp)
         MainButton(text = "Generar descuento") {
-            val result = viewModel.calcular(precio, descuento)
-            showAlert = result.second.second
-            if(!showAlert){
-                precioDescuento = result.first
-                totalDescuento = result.second.first
-            }
+            viewModel.calcular()
         }
         SpaceH()
         MainButton(text = "Limpiar", color = Color.Blue) {
-            precio = ""
-            descuento = ""
-            precioDescuento = 0.0
-            totalDescuento = 0.0
+            viewModel.limpiar()
         }
-        if(showAlert){
+        if(viewModel.showAlert){
             Alert(
                 title = "Alerta",
                 message = "Debe ingresar el precio y el porcentaje de descuento",
                 confirmText = "Aceptar",
-                onConfirmClick = { showAlert = false }) {
-                
+                onConfirmClick = { viewModel.cancelAlert() }) {
+
             }
         }
     }
 }
-
